@@ -47,8 +47,12 @@ class WORDPRESS_PLUGIN_ADMIN_MENU
         }
         echo '<div class="wrap">';
         echo '<div class="icon32 icon32-posts-post" id="icon-edit"><br></div>';
-        echo '<h2>' . _e('Contacts', 'wpbc') . '</h2>';
-        echo '<a class="add-new-h2" href="' . get_admin_url(get_current_blog_id(), 'admin.php?page=contacts_form') . '">' . _e('Add new', 'wpbc') . '</a>';
+        echo '<h2>';
+        _e('Contacts', 'wpbc');
+        echo '<a class="add-new-h2" href="' . get_admin_url(get_current_blog_id(), 'admin.php?page=contacts_form') . '">';
+        _e('Add new', 'wpbc');
+        echo '</a>';
+        echo '</h2>';
         echo $message;
         echo '<form id="contacts-table" method="POST">';
         echo '<input type="hidden" name="page" value="' . $_REQUEST['page'] . '" />';
@@ -244,7 +248,6 @@ class WORDPRESS_PLUGIN_ADMIN_MENU
         if (!empty($item['email']) && !is_email($item['email'])) $messages[] = __('E-Mail is in wrong format', 'wpbc');
         if (!empty($item['phone']) && !absint(intval($item['phone'])))  $messages[] = __('Phone can not be less than zero');
         if (!empty($item['phone']) && !preg_match('/[0-9]+/', $item['phone'])) $messages[] = __('Phone must be number');
-
 
         if (empty($messages)) return true;
         return implode('<br />', $messages);
